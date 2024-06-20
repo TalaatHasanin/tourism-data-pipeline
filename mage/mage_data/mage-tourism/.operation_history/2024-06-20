@@ -1,0 +1,2 @@
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "customtrips_to_gcs"}, "timestamp": 1718870701, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "customtrips_to_bigquery"}, "timestamp": 1718884454, "user": null}
