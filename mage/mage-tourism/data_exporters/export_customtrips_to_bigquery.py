@@ -22,8 +22,8 @@ def export_data_to_big_query(data, data_2, data_3, **kwargs) -> None:
 
     data_dict = {
         'customtrips': data_2,
-        'customtrips_places': data_3,
-        'customtrips_days': data
+        'customtrip_places': data_3,
+        'customtrip_days': data
     }
 
     for key, value in data_dict.items():

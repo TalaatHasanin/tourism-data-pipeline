@@ -3,34 +3,50 @@ blocks:
   color: null
   configuration: {}
   downstream_blocks:
-  - export_aitrips_parquet
+  - export_tourguidetrips_parquet
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: load_aitrips_places
+  name: load_tourguidetrips
   retry_config: null
   status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
-  uuid: load_aitrips_places
+  uuid: load_tourguidetrips
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
   downstream_blocks:
-  - export_aitrips_parquet
+  - export_tourguidetrips_parquet
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: load_aitrips
+  name: load_tourguidetrips_days
   retry_config: null
   status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
-  uuid: load_aitrips
+  uuid: load_tourguidetrips_days
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - export_tourguidetrips_parquet
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: load_tourguidetrip_places
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: load_tourguidetrip_places
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
@@ -39,27 +55,28 @@ blocks:
   executor_type: local_python
   has_callback: false
   language: python
-  name: export_aitrips_parquet
+  name: export_tourguidetrips_parquet
   retry_config: null
   status: executed
   timeout: null
   type: data_exporter
   upstream_blocks:
-  - load_aitrips_places
-  - load_aitrips
-  uuid: export_aitrips_parquet
+  - load_tourguidetrip_places
+  - load_tourguidetrips
+  - load_tourguidetrips_days
+  uuid: export_tourguidetrips_parquet
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
 conditionals: []
-created_at: '2024-06-19 11:53:02.050599+00:00'
+created_at: '2024-06-20 13:32:46.193832+00:00'
 data_integration: null
 description: null
 executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: aitrips_to_gsc
+name: tourguidetrips_to_gcs
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -69,6 +86,6 @@ settings:
 spark_config: {}
 tags: []
 type: python
-uuid: aitrips_to_gsc
+uuid: tourguidetrips_to_gcs
 variables_dir: /home/src/mage_data/mage-tourism
 widgets: []
