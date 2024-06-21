@@ -25,7 +25,7 @@ blocks:
   language: python
   name: export_aitrips_to_snowflake
   retry_config: null
-  status: not_executed
+  status: failed
   timeout: null
   type: data_exporter
   upstream_blocks:
