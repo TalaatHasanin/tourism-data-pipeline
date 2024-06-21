@@ -91,7 +91,7 @@ default:
   REDSHIFT_CLUSTER_ID: redshift_cluster_id
   REDSHIFT_IAM_PROFILE: default
   # Snowflake
-  SNOWFLAKE_USER: talaat049
+  SNOWFLAKE_USER: username
   SNOWFLAKE_PASSWORD: password
   SNOWFLAKE_ACCOUNT: account_id.region
   SNOWFLAKE_DEFAULT_WH: null                  # Optional default warehouse
