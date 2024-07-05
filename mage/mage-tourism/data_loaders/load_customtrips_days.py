@@ -39,31 +39,22 @@ def load_from_mongodb(*args, **kwargs):
     collection = db['customtrips']
 
     # Fetch all documents
-    documents = collection.find()  # No filters applied to get all documents
+    documents = collection.find()
 
-    # Initialize lists to store data across all documents
-    all_customtrip_ids = []  # New list to store the foreign key
-    all_days_ids = []
-    all_day_names = []
-
+    data = []
 
     # Iterate through documents
     for document in documents:
         trip_details = document["tripDetails"]
-        customtrip_id = document["_id"]  # Get the _id of the custom document
+        customtrip_id = document["_id"] 
         for details in trip_details:
-            all_days_ids.append(details.get('_id'))
-            all_day_names.append(details.get('dayName'))
-            all_customtrip_ids.append(customtrip_id)
+            data.append({
+                '_id': details.get('_id'),
+                'day_name': details.get('dayName'),
+                'customtrip_id': customtrip_id
+            })
 
-    # Create a Pandas DataFrame
-    data = {
-        '_id': all_days_ids,
-        'day_name': all_day_names,
-        'customtrip_id': all_customtrip_ids,
-    }
     df = pd.DataFrame(data)
-    # print(df.dtypes)
     
     return df
 

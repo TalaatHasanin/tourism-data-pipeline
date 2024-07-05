@@ -39,54 +39,30 @@ def load_from_mongodb(*args, **kwargs):
     collection = db['customtrips']
 
     # Fetch all documents
-    documents = collection.find()  # No filters applied to get all documents
+    documents = collection.find()
 
-    # Initialize lists to store data across all documents
-    all_days_ids = []
-    all_places_ids = []
-    place_names = []
-    latitudes = []
-    longitudes = []
-    categories = []
-    governments = []
-    activities = []
-    images = []
-    prices = []
-
+    data = []
 
     # Iterate through documents
     for document in documents:
         trip_details = document["tripDetails"]
-        customtrip_id = document["_id"] 
         for details in trip_details:
             day_id = details['_id']
             places = details['dayPlaces']
             for place in places:
-                place_names.append(place.get('placeName'))
-                latitudes.append(place.get('latitude'))
-                longitudes.append(place.get('longitude'))
-                categories.append(place.get('category'))
-                governments.append(place.get('government'))
-                activities.append(place.get('activity'))
-                images.append(place.get('image'))
-                prices.append(place.get('priceRange'))
-                all_days_ids.append(day_id)
-                all_places_ids.append(place.get('_id'))
+                data.append({
+                    '_id': place.get('_id'),
+                    'place_name': place.get('placeName'),
+                    'latitude': place.get('latitude'),
+                    'longitude': place.get('longitude'),
+                    'category': place.get('category'),
+                    'government': place.get('government'),
+                    'activity': place.get('activity'),
+                    'image': place.get('image'),
+                    'price_range': place.get('priceRange'),
+                    'day_id': day_id,
+                })
 
-    # Create a Pandas DataFrame
-    data = {
-        '_id': all_places_ids,
-        'place_name': place_names,
-        'latitude': latitudes,
-        'longitude': longitudes,
-        'category': categories,
-        'government': governments,
-        'activity': activities,
-        'image': images,
-        'price_range': prices,
-        'day_id': all_days_ids,
-    }
     df = pd.DataFrame(data)
-    # print(df.dtypes)
     
     return df

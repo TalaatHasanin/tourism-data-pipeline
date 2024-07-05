@@ -2,18 +2,35 @@ blocks:
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
-  downstream_blocks: []
+  downstream_blocks:
+  - export_places_parquet
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: load_tourguidetrips_gcs
+  name: load_entertainment_places
   retry_config: null
   status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
-  uuid: load_tourguidetrips_gcs
+  uuid: load_entertainment_places
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - export_places_parquet
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: load_historical_places
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: load_historical_places
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
@@ -22,25 +39,27 @@ blocks:
   executor_type: local_python
   has_callback: false
   language: python
-  name: load_tourguidetrips_places_gcs
+  name: export_places_parquet
   retry_config: null
-  status: not_executed
+  status: executed
   timeout: null
-  type: data_loader
-  upstream_blocks: []
-  uuid: load_tourguidetrips_places_gcs
+  type: data_exporter
+  upstream_blocks:
+  - load_historical_places
+  - load_entertainment_places
+  uuid: export_places_parquet
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
 conditionals: []
-created_at: '2024-06-20 20:06:08.775418+00:00'
+created_at: '2024-06-21 14:45:59.100199+00:00'
 data_integration: null
 description: null
 executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: tourguidetrips_to_bigquery
+name: places_to_gcs
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -50,6 +69,6 @@ settings:
 spark_config: {}
 tags: []
 type: python
-uuid: tourguidetrips_to_bigquery
+uuid: places_to_gcs
 variables_dir: /home/src/mage_data/mage-tourism
 widgets: []

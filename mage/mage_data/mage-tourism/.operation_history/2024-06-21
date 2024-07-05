@@ -1,1 +1,4 @@
 {"operation": "create", "resource": {"type": "pipeline", "uuid": "aitrips_to_snowflake"}, "timestamp": 1718961616, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "wonderful_amulet"}, "timestamp": 1718976868, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "places_to_gcs"}, "timestamp": 1718981159, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "precise_explorer"}, "timestamp": 1718993623, "user": null}

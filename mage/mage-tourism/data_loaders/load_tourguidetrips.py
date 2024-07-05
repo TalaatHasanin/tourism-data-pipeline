@@ -45,7 +45,7 @@ def load_from_mongodb(*args, **kwargs):
     # Convert the cleaned data to DataFrame
     df = pd.DataFrame(serializable_data)
     df = df.drop(columns=['__v', 'tripDetails', 'subscribers', 'included', 
-    'excluded', 'image', 'customId', 'images'])
+    'excluded', 'image', 'customId'])
 
     plans_df = pd.json_normalize(df['plans'])
     df = df.drop(columns=['plans']).join(plans_df)

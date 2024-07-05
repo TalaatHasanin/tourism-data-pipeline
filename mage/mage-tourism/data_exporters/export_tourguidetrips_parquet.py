@@ -24,9 +24,9 @@ def export_data_to_google_cloud_storage(data, data_2, data_3, **kwargs) -> None:
     bucket_name = 'easy_tour_bucket'
 
     data_dict = {
-        'tourguidetrips': data_2,
-        'tourguidetrip_places': data,
-        'tourguidetrip_days': data_3
+        'tourguidetrips': data,
+        'tourguidetrip_places': data_3,
+        'tourguidetrip_days': data_2
     }
 
     for key, value in data_dict.items():

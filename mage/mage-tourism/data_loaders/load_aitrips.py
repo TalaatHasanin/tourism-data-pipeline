@@ -43,7 +43,7 @@ def load_from_mongodb(*args, **kwargs):
     
     # Convert the cleaned data to DataFrame
     df = pd.DataFrame(serializable_data)
-    df = df.drop(columns=['__v', 'tripDetails'])
+    df = df.drop(columns=['tripDetails', '__v'])
 
     df.rename(columns={'touristId': 'tourist_id'}, inplace=True)
 

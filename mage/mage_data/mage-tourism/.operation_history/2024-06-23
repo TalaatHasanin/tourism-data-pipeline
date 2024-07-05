@@ -1,0 +1,2 @@
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "tourists_to_gcs"}, "timestamp": 1719164335, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "tourguides_to_gcs"}, "timestamp": 1719166116, "user": null}

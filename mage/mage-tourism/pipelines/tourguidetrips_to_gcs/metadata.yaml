@@ -61,9 +61,9 @@ blocks:
   timeout: null
   type: data_exporter
   upstream_blocks:
-  - load_tourguidetrip_places
   - load_tourguidetrips
   - load_tourguidetrips_days
+  - load_tourguidetrip_places
   uuid: export_tourguidetrips_parquet
 cache_block_output_in_memory: false
 callbacks: []

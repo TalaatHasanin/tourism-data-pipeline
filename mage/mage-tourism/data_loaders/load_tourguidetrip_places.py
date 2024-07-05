@@ -41,14 +41,7 @@ def load_from_mongodb(*args, **kwargs):
     # Fetch all documents
     documents = collection.find()  # No filters applied to get all documents
 
-    # Initialize lists to store data across all documents
-    all_days_ids = []
-    place_ids = []
-    place_names = []
-    place_types = []
-    latitudes = []
-    longitudes = []
-    activities = []
+    data = []
 
 
     # Iterate through documents
@@ -56,24 +49,16 @@ def load_from_mongodb(*args, **kwargs):
         places = document["dayPlaces"]
         day_id = document["_id"]  # Get the _id of the custom document
         for place in places:
-            all_days_ids.append(day_id)
-            place_ids.append(place.get('_id'))
-            place_names.append(place.get('placeName'))
-            place_types.append(place.get('placeType'))
-            latitudes.append(place.get('latitude'))
-            longitudes.append(place.get('longitude'))
-            activities.append(place.get('activity'))
+            data.append({
+                '_id': place.get('_id'),
+                'place_name': place.get('placeName'),
+                'place_type': place.get('placeType'),
+                'latitude': place.get('latitude'),
+                'longitude': place.get('longitude'),
+                'activity': place.get('activity'),
+                'day_id': day_id
+            })
 
-    # Create a Pandas DataFrame
-    data = {
-        '_id': place_ids,
-        'place_name': place_names,
-        'place_type': place_types,
-        'latitude': latitudes,
-        'longitude': longitudes,
-        'activity': activities,
-        'day_id': all_days_ids
-    }
     df = pd.DataFrame(data)
     
     return df

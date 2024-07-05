@@ -41,25 +41,19 @@ def load_from_mongodb(*args, **kwargs):
     tripdays = db['tripdays'].find()
 
     tourguidetrips = db['tourguidetrips'].find()
-
-    # Initialize lists to store data across all documents
-    all_tourguidetrips_ids = [] 
-    all_days_ids = []
+    
+    data = []
 
 
     for document in tourguidetrips:
         tourguidetrip_id = document['_id']
         trip_details = document['tripDetails']
         for detail in trip_details:
-            all_days_ids.append(detail)
-            all_tourguidetrips_ids.append(tourguidetrip_id)
-        
+            data.append({
+                '_id': detail,
+                'tourguidetrip_id': tourguidetrip_id,
+            })
 
-    # Create a Pandas DataFrame
-    data = {
-        '_id': all_days_ids,
-        'tourguidetrip_id': all_tourguidetrips_ids,
-    }
     df = pd.DataFrame(data)
 
     df2 = pd.DataFrame(tripdays)
@@ -67,6 +61,10 @@ def load_from_mongodb(*args, **kwargs):
 
     # Merge the dataframes on _id
     enriched_df = pd.merge(df, df2, on='_id', how='left')
+
+    enriched_df.rename(columns={'dayName': 'day_name'}, inplace=True)
+    enriched_df.rename(columns={'createdAt': 'created_at'}, inplace=True)
+    enriched_df.rename(columns={'updatedAt': 'updated_at'}, inplace=True)
     
     return enriched_df
 
